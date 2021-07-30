@@ -1,9 +1,0 @@
-/home/edujtm/Code/git/tce/RefinedQuery/src/RefinedQuery/bin/Debug/netstandard2.0/RefinedQuery.deps.json
-/home/edujtm/Code/git/tce/RefinedQuery/src/RefinedQuery/bin/Debug/netstandard2.0/RefinedQuery.dll
-/home/edujtm/Code/git/tce/RefinedQuery/src/RefinedQuery/bin/Debug/netstandard2.0/RefinedQuery.pdb
-/home/edujtm/Code/git/tce/RefinedQuery/src/RefinedQuery/obj/Debug/netstandard2.0/RefinedQuery.csproj.AssemblyReference.cache
-/home/edujtm/Code/git/tce/RefinedQuery/src/RefinedQuery/obj/Debug/netstandard2.0/RefinedQuery.AssemblyInfoInputs.cache
-/home/edujtm/Code/git/tce/RefinedQuery/src/RefinedQuery/obj/Debug/netstandard2.0/RefinedQuery.AssemblyInfo.cs
-/home/edujtm/Code/git/tce/RefinedQuery/src/RefinedQuery/obj/Debug/netstandard2.0/RefinedQuery.csproj.CoreCompileInputs.cache
-/home/edujtm/Code/git/tce/RefinedQuery/src/RefinedQuery/obj/Debug/netstandard2.0/RefinedQuery.dll
-/home/edujtm/Code/git/tce/RefinedQuery/src/RefinedQuery/obj/Debug/netstandard2.0/RefinedQuery.pdb

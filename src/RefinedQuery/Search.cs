@@ -9,15 +9,15 @@ namespace RefinedQuery
 {
 
     // ------- Interno -------
-    
+
     public interface ISearchFilter<T> {
         Expression<Func<T, bool>> GetSearchFilter(string searchTerm);
     }
-    
+
     public interface ISearchRuleBuilder<T, TProperty> {
         void ThatMatches(Expression<Func<TProperty, string, bool>> matcher);
     }
-    
+
     public class SearchRule<T> : ISearchFilter<T> 
     {
         private readonly Expression<Func<T, string, bool>> _filter;
@@ -26,20 +26,13 @@ namespace RefinedQuery
         {
             _filter = filter;
         }
-        
+
         public Expression<Func<T, bool>> GetSearchFilter(string searchTerm)
         {
-            return CurrySearchTerm(_filter, searchTerm);
-        }
-
-        private Expression<Func<T, bool>> CurrySearchTerm(Expression<Func<T, string, bool>> expr, string searchTerm)
-        {
-          var constantSearchTerm = Expression.Constant(searchTerm);
-          var body = expr.Body.ReplaceParameter(expr.Parameters[1], constantSearchTerm);
-          return Expression.Lambda<Func<T, bool>>(body, expr.Parameters[0]);
+            return _filter.Curry(searchTerm);
         }
     }
-    
+
     public static class IQueryableExtensions
     {
         public static IQueryable<T> Search<T>(this IQueryable<T> queryable, AbstractSearchFilter<T> matcher, string searchTerm)
@@ -52,13 +45,13 @@ namespace RefinedQuery
     {
         private readonly Expression<Func<T, TProperty>> _propSelector;
         private readonly AbstractSearchFilter<T> _searchFilter;
-        
+
         public SearchRuleBuilder(Expression<Func<T, TProperty>> propSelector, AbstractSearchFilter<T> filter)
         {
             _propSelector = propSelector;
             _searchFilter = filter;
         }
-        
+
         public void ThatMatches(Expression<Func<TProperty, string, bool>> matcher)
         {
 
@@ -70,11 +63,11 @@ namespace RefinedQuery
             _searchFilter.SearchRules.Add(new SearchRule<T>(safeMatcher));
         }
     }
-    
+
     public abstract class AbstractSearchFilter<T>
     {
         public List<ISearchFilter<T>> SearchRules = new List<ISearchFilter<T>>();
-        
+
         public IQueryable<T> ApplyFilter(IQueryable<T> values, string searchTerm)
         {
             if (String.IsNullOrWhiteSpace(searchTerm))
@@ -85,7 +78,7 @@ namespace RefinedQuery
             if (!SearchRules.Any()) {
               return values;
             }
-            
+
             Expression<Func<T, bool>> fullFilter = null;
             foreach (var rule in SearchRules)
             {
@@ -97,10 +90,10 @@ namespace RefinedQuery
                   fullFilter = fullFilter.OrElse(expr);
                 }
             }
-            
+
             return values.Where(fullFilter);
         }
-        
+
         public ISearchRuleBuilder<T, TProperty> SearchFor<TProperty>(Expression<Func<T, TProperty>> propSelector)
         {
             var builder = new SearchRuleBuilder<T, TProperty>(propSelector, this);
