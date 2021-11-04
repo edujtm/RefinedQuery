@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using Xunit;
 using FluentAssertions;
 
+using RefinedQuery.Search;
+using RefinedQuery.Linq;
+
 namespace RefinedQuery.Tests
 {
     public class Person
