@@ -1,4 +1,4 @@
-
+using System.Collections.Generic;
 
 namespace RefinedQuery.Examples
 {
@@ -11,5 +11,8 @@ namespace RefinedQuery.Examples
         public int Offset { get; set; }
 
         public int Length { get; set; }
+
+        public string Search { get; set; }
+        public IEnumerable<string> OrderBy { get; set; }
     }
 }
