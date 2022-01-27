@@ -10,7 +10,7 @@ namespace RefinedQuery.Linq
     {
         public static IQueryable<T> Search<T>(this IQueryable<T> queryable, AbstractSearchFilter<T> matcher, string searchTerm)
         {
-            return matcher.ApplyFilter(queryable, searchTerm);   
+            return matcher.ApplySearch(queryable, searchTerm);   
         }
 
         internal static IOrderedQueryable<T> AppendOrderBy<T, TKey>(this IQueryable<T> query, Expression<Func<T, TKey>> keySelector)

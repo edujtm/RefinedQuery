@@ -12,7 +12,7 @@ namespace RefinedQuery.Ordering
         public List<OrderRule<T>> OrderRules = new List<OrderRule<T>>();
         private IOrderFieldHandler orderHandler = new DefaultOrderFieldHandler();
         
-        public IQueryable<T> ApplyFilter(IQueryable<T> values, IEnumerable<string> orderFields)
+        public IQueryable<T> ApplyOrder(IQueryable<T> values, IEnumerable<string> orderFields)
         {
             if (orderFields == null) 
             {

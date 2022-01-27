@@ -12,7 +12,7 @@ namespace RefinedQuery.Search
     {
         public List<ISearchFilter<T>> SearchRules = new List<ISearchFilter<T>>();
 
-        public IQueryable<T> ApplyFilter(IQueryable<T> values, string searchTerm)
+        public IQueryable<T> ApplySearch(IQueryable<T> values, string searchTerm)
         {
             if (String.IsNullOrWhiteSpace(searchTerm))
             {

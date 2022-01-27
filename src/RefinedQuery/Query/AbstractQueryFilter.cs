@@ -12,7 +12,7 @@ namespace RefinedQuery.Query
     {
         public List<IQueryRule<T, Q>> QueryRules = new List<IQueryRule<T, Q>>();
 
-        public IQueryable<T> ApplyFilter(IQueryable<T> values, Q query)
+        public IQueryable<T> ApplyQuery(IQueryable<T> values, Q query)
         {
             if (!QueryRules.Any())
             {

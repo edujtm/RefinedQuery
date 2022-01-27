@@ -7,10 +7,13 @@ using RefinedQuery.Pagination;
 using RefinedQuery.Query;
 using RefinedQuery.Search;
 
-namespace RefinedQuery.Specification
+namespace RefinedQuery.QueryStrings
 {
-    public abstract class ApiSpecification<T, Q>
+    public abstract class QueryString<T, Q>
     {
+
+        // Same hack from the AbstractPageFilter but for the full query string
+        public PagingOptions<T, Q> PagingBy { get; } = new PagingOptions<T, Q>();
 
         private AbstractQueryFilter<T, Q> _queryFilter = null;
 
@@ -60,24 +63,24 @@ namespace RefinedQuery.Specification
             _pageFilter = pageFilter;
         }
 
-        public IQueryable<T> ApplySpecification(IQueryable<T> values, Q query)
+        public IQueryable<T> ApplyQueryString(IQueryable<T> values, Q query)
         {
             var queryable = values;
             if (_queryFilter != null)
             {
-                queryable = _queryFilter.ApplyFilter(queryable, query);
+                queryable = _queryFilter.ApplyQuery(queryable, query);
             }
 
             if (_searchFilter != null)
             {
                 var searchTerm = _getSearchTerm(query);
-                queryable = _searchFilter.ApplyFilter(queryable, searchTerm);
+                queryable = _searchFilter.ApplySearch(queryable, searchTerm);
             }
 
             if (_orderFilter != null)
             {
                 var orderFields = _getOrderFields(query);
-                queryable = _orderFilter.ApplyFilter(queryable, orderFields);
+                queryable = _orderFilter.ApplyOrder(queryable, orderFields);
             }
 
             if (_pageFilter != null)

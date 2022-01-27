@@ -60,7 +60,7 @@ namespace RefinedQuery.Tests
 
             var searchTerm = "Doe";
 
-            var result = filter.ApplyFilter(query, searchTerm);
+            var result = filter.ApplySearch(query, searchTerm);
 
             result.Should().SatisfyRespectively(
                 first => { first.LastName.Should().Be("Doe"); },
@@ -106,7 +106,7 @@ namespace RefinedQuery.Tests
 
             var searchTerm = "something";
 
-            var result = filter.ApplyFilter(query, searchTerm);
+            var result = filter.ApplySearch(query, searchTerm);
 
             result.Should().BeEmpty();
         }

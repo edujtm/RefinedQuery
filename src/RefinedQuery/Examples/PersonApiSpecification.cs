@@ -1,11 +1,11 @@
 
-using RefinedQuery.Specification;
+using RefinedQuery.QueryStrings;
 
 namespace RefinedQuery.Examples
 {
-    public class PersonApiSpecification : ApiSpecification<Person, PersonQuery>
+    public class PersonQueryString : QueryString<Person, PersonQuery>
     {
-        public PersonApiSpecification()
+        public PersonQueryString()
         {
 
             // Configures query string for querying (eg. /route?name="eduardo"&age=20)
@@ -44,7 +44,7 @@ namespace RefinedQuery.Examples
             // Configures query for pagination (e.g. /route?offset=20&length=10)
             UsePagination((spec) => {
                 spec.WithPagination(
-                    spec.PagingBy.OffsetAndLength(
+                    PagingBy.OffsetAndLength(
                         offset: query => query.Offset,
                         length: query => query.Length
                     )
