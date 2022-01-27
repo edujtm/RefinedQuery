@@ -5,7 +5,7 @@ using RefinedQuery.Expressions;
 
 namespace RefinedQuery.Search
 {
-    public class SearchRule<T> : ISearchFilter<T> 
+    public class SearchRule<T> : ISearchRule<T> 
     {
         private readonly Expression<Func<T, string, bool>> _filter;
 

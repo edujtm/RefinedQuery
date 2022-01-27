@@ -7,7 +7,7 @@ using RefinedQuery.Linq;
 
 namespace RefinedQuery.Ordering
 {
-    public abstract class AbstractOrderFilter<T>
+    public abstract class AbstractOrderFilter<T> : IOrderFilter<T>
     {
         public List<OrderRule<T>> OrderRules = new List<OrderRule<T>>();
         private IOrderFieldHandler orderHandler = new DefaultOrderFieldHandler();

@@ -2,7 +2,7 @@ using System.Linq;
 
 namespace RefinedQuery.Pagination
 {
-    public abstract class AbstractPageFilter<T, Q>
+    public abstract class AbstractPageFilter<T, Q> : IPageFilter<T, Q>
     {
         private PaginationHandler<T, Q> _handler;
 

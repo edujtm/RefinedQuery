@@ -1,9 +1,9 @@
-using System;
-using System.Linq.Expressions;
+using System.Linq;
 
 namespace RefinedQuery.Search
 {
-    public interface ISearchFilter<T> {
-        Expression<Func<T, bool>> GetSearchFilter(string searchTerm);
+    public interface ISearchFilter<T>
+    {
+        IQueryable<T> ApplySearch(IQueryable<T> values, string searchTerm);
     }
 }

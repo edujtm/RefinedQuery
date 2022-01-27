@@ -10,7 +10,7 @@ namespace RefinedQuery.Search
 
     public abstract class AbstractSearchFilter<T>
     {
-        public List<ISearchFilter<T>> SearchRules = new List<ISearchFilter<T>>();
+        public List<ISearchRule<T>> SearchRules = new List<ISearchRule<T>>();
 
         public IQueryable<T> ApplySearch(IQueryable<T> values, string searchTerm)
         {

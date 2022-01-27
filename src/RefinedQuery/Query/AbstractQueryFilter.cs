@@ -8,7 +8,7 @@ using RefinedQuery.Expressions;
 namespace RefinedQuery.Query
 {
 
-    public abstract class AbstractQueryFilter<T, Q>
+    public abstract class AbstractQueryFilter<T, Q> : IQueryFilter<T, Q>
     {
         public List<IQueryRule<T, Q>> QueryRules = new List<IQueryRule<T, Q>>();
 

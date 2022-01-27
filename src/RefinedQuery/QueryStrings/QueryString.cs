@@ -9,7 +9,11 @@ using RefinedQuery.Search;
 
 namespace RefinedQuery.QueryStrings
 {
-    public abstract class QueryString<T, Q>
+    public abstract class QueryString<T, Q> 
+        : IPageFilter<T, Q>,
+          IQueryFilter<T, Q>,
+          IOrderFilter<T>,
+          ISearchFilter<T>
     {
 
         // Same hack from the AbstractPageFilter but for the full query string
@@ -62,6 +66,18 @@ namespace RefinedQuery.QueryStrings
             paginationBuilder(pageFilter);
             _pageFilter = pageFilter;
         }
+
+        public IQueryable<T> ApplyQuery(IQueryable<T> values, Q query)
+            => _queryFilter != null ? _queryFilter.ApplyQuery(values, query) : values;
+
+        public IQueryable<T> ApplySearch(IQueryable<T> values, string searchTerm)
+            => _searchFilter != null ? _searchFilter.ApplySearch(values, searchTerm) : values;
+
+        public IQueryable<T> ApplyOrder(IQueryable<T> values, IEnumerable<string> orderDefs)
+            => _orderFilter != null ? _orderFilter.ApplyOrder(values, orderDefs) : values;
+
+        public IQueryable<T> ApplyPagination(IQueryable<T> values, Q query) 
+            => _pageFilter != null ? _pageFilter.ApplyPagination(values, query) : values;
 
         public IQueryable<T> ApplyQueryString(IQueryable<T> values, Q query)
         {
