@@ -2,7 +2,7 @@
 
 ## RefinedQuery
 
-Allows for transformation of an IQueryable based on a given URI query string.
+Allows for transformation of an IQueryable based on a given URL query string.
 
 ```cs
 public class PersonQueryString : QueryString<Person, PersonQuery>
