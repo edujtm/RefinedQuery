@@ -76,7 +76,7 @@ namespace RefinedQuery.Tests
 
             string searchTerm = null;
 
-            var result = query.Search(filter, searchTerm);
+            var result = query.SearchBy(filter, searchTerm);
 
             result.Should().HaveCount(4);
         }
@@ -90,7 +90,7 @@ namespace RefinedQuery.Tests
 
             var searchTerm = "Mary";
 
-            var result = query.Search(filter, searchTerm);
+            var result = query.SearchBy(filter, searchTerm);
 
             result.Should().Equal(persons);
         }

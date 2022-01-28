@@ -8,7 +8,7 @@ using RefinedQuery.Expressions;
 namespace RefinedQuery.Search
 {
 
-    public abstract class AbstractSearchFilter<T>
+    public abstract class AbstractSearchFilter<T> : ISearchFilter<T>
     {
         public List<ISearchRule<T>> SearchRules = new List<ISearchRule<T>>();
 
