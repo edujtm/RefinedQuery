@@ -7,18 +7,12 @@ using FluentAssertions;
 
 using RefinedQuery.Search;
 using RefinedQuery.Linq;
+using RefinedQuery.Tests.Helpers;
+using RefinedQuery.Tests.Helpers.Xunit;
+using RefinedQuery.Tests.Helpers.Models;
 
 namespace RefinedQuery.Tests
 {
-    public class Person
-    {
-      public string FirstName { get; set; }
-
-      public string LastName { get; set; }
-
-      public int Age { get; set; }
-
-    }
 
     public class PersonSearchFilter : AbstractSearchFilter<Person>
     {
@@ -41,8 +35,10 @@ namespace RefinedQuery.Tests
         public EmptySearchFilter() {}
     }
 
-    public class AbstractSearchFilterTest
+    [Collection("DB")]
+    public class AbstractSearchFilterTest : RespawnedTest
     {
+
 
         IEnumerable<Person> persons = new List<Person>()
         {
@@ -52,15 +48,29 @@ namespace RefinedQuery.Tests
             new Person { FirstName = "Doe", LastName = "Johnson", Age = 37 },
         };
 
+        private readonly DbContextFixture _fixture;
+
+        public AbstractSearchFilterTest(DbContextFixture fixture)
+            : base(fixture)
+        {
+            _fixture = fixture;
+        }
+
         [Fact]
         public void AbstractSearchFilter_ShouldReturn_MatchesOnAnyColumn()
         {
-            var query = persons.AsQueryable();        
+
+            _fixture.Context.Persons.AddRange(persons);
+
+            _fixture.Context.SaveChanges();
+            _fixture.Context.DetachEntities();
+
             var filter = new PersonSearchFilter();
 
             var searchTerm = "Doe";
 
-            var result = filter.ApplySearch(query, searchTerm);
+            var query = _fixture.Context.Persons;
+            var result = query.SearchBy(filter, searchTerm);
 
             result.Should().SatisfyRespectively(
                 first => { first.LastName.Should().Be("Doe"); },
@@ -71,11 +81,16 @@ namespace RefinedQuery.Tests
         [Fact]
         public void AbstractSeachFilter_ShouldNot_ModifyQuery_WhenSearchTermIsNull()
         {
-            var query = persons.AsQueryable();        
+            _fixture.Context.Persons.AddRange(persons);
+
+            _fixture.Context.SaveChanges();
+            _fixture.Context.DetachEntities();
+
             var filter = new PersonSearchFilter();
 
             string searchTerm = null;
 
+            var query = _fixture.Context.Persons;        
             var result = query.SearchBy(filter, searchTerm);
 
             result.Should().HaveCount(4);
@@ -84,15 +99,19 @@ namespace RefinedQuery.Tests
         [Fact]
         public void AbstractSearchFilter_ShouldNot_ModifyQuery_WhenGivenNoSearchRules()
         {
-            
-            var query = persons.AsQueryable();        
+            _fixture.Context.Persons.AddRange(persons);
+
+            _fixture.Context.SaveChanges();
+            _fixture.Context.DetachEntities();
+
             var filter = new EmptySearchFilter();
 
             var searchTerm = "Mary";
 
+            var query = _fixture.Context.Persons;
             var result = query.SearchBy(filter, searchTerm);
 
-            result.Should().Equal(persons);
+            result.Should().BeEquivalentTo(persons);
         }
 
         [Fact]
@@ -101,12 +120,17 @@ namespace RefinedQuery.Tests
             var clone = persons.ToList();
             clone.Add(new Person { FirstName = null, LastName = null, Age = 30 });
 
-            var query = clone.AsQueryable();
+            _fixture.Context.Persons.AddRange(clone);
+
+            _fixture.Context.SaveChanges();
+            _fixture.Context.DetachEntities();
+
             var filter = new PersonSearchFilter();
 
             var searchTerm = "something";
 
-            var result = filter.ApplySearch(query, searchTerm);
+            var query = _fixture.Context.Persons;
+            var result = query.SearchBy(filter, searchTerm);
 
             result.Should().BeEmpty();
         }

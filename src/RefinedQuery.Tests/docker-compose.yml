@@ -1,0 +1,11 @@
+version: '3.9'
+
+
+services:
+  mssql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 8000:1433
+    environment:
+            SA_PASSWORD: "strongTest(!)Password"
+            ACCEPT_EULA: "Y"
