@@ -4,8 +4,37 @@
 
 Allows for transformation of an IQueryable based on a given URL query string.
 
+## Example
+
+Given an entity object and a corresponding query object (i.e. DTO).
+
 ```cs
-public class PersonQueryString : QueryString<Person, PersonQuery>
+public class Person
+{
+    public string FirstName { get; set; }
+
+    public int Age { get; set; }
+}
+
+public class PersonDTO
+{
+    public string Name { get; set; }
+
+    public int Age { get; set; }
+
+    public string Search { get; set; }
+
+    public int Offset { get; set; }
+
+    public int Length { get; set; }
+}
+```
+
+It's possible to define a class that specifies how queries will be applied
+to an IQueryable collection.
+
+```cs
+public class PersonQueryString : QueryString<Person, PersonDTO>
 {
     public PersonQueryString()
     {
@@ -53,5 +82,31 @@ public class PersonQueryString : QueryString<Person, PersonQuery>
             );
         });
     }
+}
+```
+
+And then use it to manipulate the IQueryable.
+
+```cs
+public class Sample {
+  private readonly PersonQueryString queryString = new PersonQueryString();
+
+  public void Query(PersonDTO dto)
+  {
+      IQueryable<Person> persons = \* Create IQueryable *\
+
+      var queryResult = persons
+        .QueryBy(queryString, dto)
+        .SearchBy(queryString, dto)
+        .SortBy(queryString, dto)
+        .PageBy(queryString, dto)
+        .ToList()
+      
+      // Or alternatively
+
+      var queryResult = persons.ApplyQueryString(queryString, dto)
+
+      return queryResult;
+  }
 }
 ```
