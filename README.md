@@ -24,6 +24,8 @@ public class PersonDTO
 
     public string Search { get; set; }
 
+    public IEnumerable<string> OrderBy { get; set; }
+
     public int Offset { get; set; }
 
     public int Length { get; set; }
@@ -97,8 +99,8 @@ public class Sample {
 
       var queryResult = persons
         .QueryBy(queryString, dto)
-        .SearchBy(queryString, dto)
-        .SortBy(queryString, dto)
+        .SearchBy(queryString, dto.Search)
+        .SortBy(queryString, dto.OrderBy)
         .PageBy(queryString, dto)
         .ToList()
       
