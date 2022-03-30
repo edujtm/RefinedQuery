@@ -1,4 +1,5 @@
 
+using RefinedQuery.Exceptions;
 
 namespace RefinedQuery.Ordering
 {

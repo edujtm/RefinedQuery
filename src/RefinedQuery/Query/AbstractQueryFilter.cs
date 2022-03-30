@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 
 using RefinedQuery.Expressions;
+using RefinedQuery.Exceptions;
 
 namespace RefinedQuery.Query
 {

@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Collections.Generic;
 
 using RefinedQuery.Linq;
+using RefinedQuery.Exceptions;
 
 namespace RefinedQuery.Ordering
 {

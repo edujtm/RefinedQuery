@@ -5,7 +5,7 @@ namespace RefinedQuery.Tests.Helpers.Xunit
 {
     public class DbContextFixture : IDisposable
     {
-        public string ConnectionString { get; } = "Server=localhost,8000;Database=TestDB;User=sa;Password=strongTest(!)Password;TrustServerCertificate=True";
+        public string ConnectionString { get; } = "Data Source=localhost;Initial Catalog=TestDB;Integrated Security=True;TrustServerCertificate=True";
 
         public TestDbContext Context { get; }
         public DbContextFixture()

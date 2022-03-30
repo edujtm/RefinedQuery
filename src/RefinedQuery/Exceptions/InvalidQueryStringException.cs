@@ -1,13 +1,10 @@
 using System;
 
 
-namespace RefinedQuery.Query
+namespace RefinedQuery.Exceptions
 {
-    public class InvalidQueryStringException : Exception
+    public class InvalidQueryStringException : RefinedQueryException
     {
-        public InvalidQueryStringException() 
-            : base() {}
-
         public InvalidQueryStringException(string message)
             : base(message) {}
 

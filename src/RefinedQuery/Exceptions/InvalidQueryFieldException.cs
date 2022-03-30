@@ -1,12 +1,9 @@
 using System;
 
-namespace RefinedQuery.Ordering
+namespace RefinedQuery.Exceptions
 {
-    public class InvalidQueryFieldException : Exception
+    public class InvalidQueryFieldException : RefinedQueryException
     {
-        public InvalidQueryFieldException() 
-            : base() {}
-
         public InvalidQueryFieldException(string message)
             : base(message) {}
 
