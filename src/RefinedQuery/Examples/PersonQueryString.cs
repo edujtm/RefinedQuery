@@ -1,11 +1,11 @@
 
-using RefinedQuery.QueryStrings;
+using RefinedQuery.QueryHandler;
 
 namespace RefinedQuery.Examples
 {
-    public class PersonQueryString : QueryString<Person, PersonQuery>
+    public class PersonQueryHandler : QueryHandler<Person, PersonQuery>
     {
-        public PersonQueryString()
+        public PersonQueryHandler()
         {
 
             // Configures query string for querying (eg. /route?name="eduardo"&age=20)

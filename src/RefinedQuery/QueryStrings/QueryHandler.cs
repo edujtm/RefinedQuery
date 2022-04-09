@@ -8,9 +8,9 @@ using RefinedQuery.Pagination;
 using RefinedQuery.Querying;
 using RefinedQuery.Searching;
 
-namespace RefinedQuery.QueryStrings
+namespace RefinedQuery.QueryHandler
 {
-    public abstract class QueryString<T, Q> 
+    public abstract class QueryHandler<T, Q> 
         : IPageFilter<T, Q>,
           IQueryFilter<T, Q>,
           IOrderFilter<T>,
@@ -80,7 +80,7 @@ namespace RefinedQuery.QueryStrings
         public IQueryable<T> ApplyPagination(IQueryable<T> values, Q query) 
             => _pageFilter != null ? _pageFilter.ApplyPagination(values, query) : values;
 
-        public IQueryable<T> ApplyQueryString(IQueryable<T> values, Q query)
+        public IQueryable<T> Apply(IQueryable<T> values, Q query)
         {
             var queryable = values;
             if (_queryFilter != null)

@@ -7,7 +7,7 @@ using RefinedQuery.Querying;
 using RefinedQuery.Searching;
 using RefinedQuery.Ordering;
 using RefinedQuery.Pagination;
-using RefinedQuery.QueryStrings;
+using RefinedQuery.QueryHandler;
 
 namespace RefinedQuery.Linq
 {
@@ -20,7 +20,7 @@ namespace RefinedQuery.Linq
         /// The rules are AND'ed together so that only items that match all of rules
         /// remains in the queryable. <br/>
         ///
-        /// NOTE: when used with QueryString<> object, this method only applies the
+        /// NOTE: when used with QueryHandler<> object, this method only applies the
         /// query section of the rule.
         /// </summary>
         /// <param name="queryable">The queryable that will be queried for a match</param>
@@ -88,20 +88,20 @@ namespace RefinedQuery.Linq
         }
 
         /// <summary>
-        /// Applies all the rules defined in the Query String definition
+        /// Applies all the rules defined in the Query Handler definition
         /// to the given queryable.
         /// </summary>
         /// <param name="queryable">Queryable that will be queried using the query string</param>
-        /// <param name="queryString">object with rules for parsing the query string</param>
+        /// <param name="queryHandler">object with rules for parsing the query string</param>
         /// <param name="query">Object with query data</param>
         /// <returns>Queryable transformed by applying the query data to the querying rules</returns>
-        public static IQueryable<T> ApplyQueryString<T, Q>(
+        public static IQueryable<T> Apply<T, Q>(
             this IQueryable<T> queryable,
-            QueryString<T, Q> queryString,
+            QueryHandler<T, Q> queryHandler,
             Q query
         )
         {
-            return queryString.ApplyQueryString(queryable, query);
+            return queryHandler.Apply(queryable, query);
         }
 
         internal static IOrderedQueryable<T> AppendOrderBy<T, TKey>(this IQueryable<T> query, Expression<Func<T, TKey>> keySelector)

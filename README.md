@@ -36,9 +36,9 @@ It's possible to define a class that specifies how queries will be applied
 to an IQueryable collection.
 
 ```cs
-public class PersonQueryString : QueryString<Person, PersonDTO>
+public class PersonQueryHandler : QueryHandler<Person, PersonDTO>
 {
-    public PersonQueryString()
+    public PersonQueryHandler()
     {
 
         // Configures query string for querying (eg. /route?name="eduardo"&age=20)
@@ -91,22 +91,22 @@ And then use it to manipulate the IQueryable.
 
 ```cs
 public class Sample {
-  private readonly PersonQueryString queryString = new PersonQueryString();
+  private readonly PersonQueryHandler queryHandler = new PersonQueryHandler();
 
   public void Query(PersonDTO dto)
   {
       IQueryable<Person> persons = \* Create IQueryable *\
 
       var queryResult = persons
-        .QueryBy(queryString, dto)
-        .SearchBy(queryString, dto.Search)
-        .SortBy(queryString, dto.OrderBy)
-        .PageBy(queryString, dto)
+        .QueryBy(queryHandler, dto)
+        .SearchBy(queryHandler, dto.Search)
+        .SortBy(queryHandler, dto.OrderBy)
+        .PageBy(queryHandler, dto)
         .ToList()
       
       // Or alternatively
 
-      var queryResult = persons.ApplyQueryString(queryString, dto)
+      var queryResult = persons.Apply(queryHandler, dto)
 
       return queryResult;
   }
