@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 using RefinedQuery.Expressions;
 
-namespace RefinedQuery.Search
+namespace RefinedQuery.Searching
 {
     public class SearchRule<T> : ISearchRule<T> 
     {

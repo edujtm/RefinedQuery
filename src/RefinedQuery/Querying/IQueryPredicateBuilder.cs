@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace RefinedQuery.Query
+namespace RefinedQuery.Querying
 {
     public interface IQueryPredicateBuilder<T, TProperty, Q, QProperty>
     {

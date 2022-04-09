@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 using RefinedQuery.Expressions;
 
-namespace RefinedQuery.Query
+namespace RefinedQuery.Querying
 {
     public class QueryRule<T, Q> : IQueryRule<T, Q>
     {

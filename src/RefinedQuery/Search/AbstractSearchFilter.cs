@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 using RefinedQuery.Expressions;
 
-namespace RefinedQuery.Search
+namespace RefinedQuery.Searching
 {
 
     public abstract class AbstractSearchFilter<T> : ISearchFilter<T>

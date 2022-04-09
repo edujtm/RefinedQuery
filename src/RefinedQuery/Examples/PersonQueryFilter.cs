@@ -1,5 +1,5 @@
 
-using RefinedQuery.Query;
+using RefinedQuery.Querying;
 
 namespace RefinedQuery.Examples
 {

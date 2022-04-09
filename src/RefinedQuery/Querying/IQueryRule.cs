@@ -2,7 +2,7 @@ using System;
 using System.Linq.Expressions;
 
 
-namespace RefinedQuery.Query
+namespace RefinedQuery.Querying
 {
     public interface IQueryRule<T, Q>
     {

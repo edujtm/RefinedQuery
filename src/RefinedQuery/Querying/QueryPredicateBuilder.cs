@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 using RefinedQuery.Expressions;
 
-namespace RefinedQuery.Query
+namespace RefinedQuery.Querying
 {
     /// Def pissed off some generic typing gods while making this class. 
     public class QueryPredicateBuilder<T, TProperty, Q, QProperty> : IQueryPredicateBuilder<T, TProperty, Q, QProperty>

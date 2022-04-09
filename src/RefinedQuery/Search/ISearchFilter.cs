@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace RefinedQuery.Search
+namespace RefinedQuery.Searching
 {
     public interface ISearchFilter<T>
     {

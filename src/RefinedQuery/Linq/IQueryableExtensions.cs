@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-using RefinedQuery.Query;
-using RefinedQuery.Search;
+using RefinedQuery.Querying;
+using RefinedQuery.Searching;
 using RefinedQuery.Ordering;
 using RefinedQuery.Pagination;
 using RefinedQuery.QueryStrings;

@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace RefinedQuery.Query
+namespace RefinedQuery.Querying
 {
     public interface IQueryFilter<T, Q> 
     {

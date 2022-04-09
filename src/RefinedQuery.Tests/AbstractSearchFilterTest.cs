@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Xunit;
 using FluentAssertions;
 
-using RefinedQuery.Search;
+using RefinedQuery.Searching;
 using RefinedQuery.Linq;
 using RefinedQuery.Tests.Helpers;
 using RefinedQuery.Tests.Helpers.Xunit;

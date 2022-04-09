@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using RefinedQuery.Noop;
 using RefinedQuery.Ordering;
 using RefinedQuery.Pagination;
-using RefinedQuery.Query;
-using RefinedQuery.Search;
+using RefinedQuery.Querying;
+using RefinedQuery.Searching;
 
 namespace RefinedQuery.QueryStrings
 {

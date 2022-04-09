@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using RefinedQuery.Expressions;
 using RefinedQuery.Exceptions;
 
-namespace RefinedQuery.Query
+namespace RefinedQuery.Querying
 {
 
     public abstract class AbstractQueryFilter<T, Q> : IQueryFilter<T, Q>

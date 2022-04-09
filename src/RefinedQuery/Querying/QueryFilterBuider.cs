@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace RefinedQuery.Query
+namespace RefinedQuery.Querying
 {
     public class QueryFilterBuilder<T, Q, QProperty> : IQueryFilterBuilder<T, Q, QProperty>
     {

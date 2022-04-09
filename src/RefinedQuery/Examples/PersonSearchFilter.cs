@@ -1,5 +1,5 @@
 
-using RefinedQuery.Search;
+using RefinedQuery.Searching;
 
 
 namespace RefinedQuery.Examples
