@@ -39,14 +39,7 @@ namespace RefinedQuery.Tests
     public class AbstractSearchFilterTest : RespawnedTest
     {
 
-
-        IEnumerable<Person> persons = new List<Person>()
-        {
-            new Person { FirstName = "Eduardo", LastName = "Macedo", Age = 25 },
-            new Person { FirstName = "John", LastName = "Doe", Age = 37 },
-            new Person { FirstName = "Mary", LastName = "Lucy", Age = 37 },
-            new Person { FirstName = "Doe", LastName = "Johnson", Age = 37 },
-        };
+        IEnumerable<Person> persons = Fake.Persons(); 
 
         private readonly DbContextFixture _fixture;
 
@@ -59,7 +52,6 @@ namespace RefinedQuery.Tests
         [Fact]
         public void AbstractSearchFilter_ShouldReturn_MatchesOnAnyColumn()
         {
-
             _fixture.Context.Persons.AddRange(persons);
 
             _fixture.Context.SaveChanges();
@@ -72,9 +64,13 @@ namespace RefinedQuery.Tests
             var query = _fixture.Context.Persons;
             var result = query.SearchBy(filter, searchTerm);
 
+            // Avoids flakiness due to database not ensuring
+            // the same order of insertion on retrieval
+            var orderedResult = result.OrderBy(person => person.FirstName);
+
             result.Should().SatisfyRespectively(
-                first => { first.LastName.Should().Be("Doe"); },
-                second => { second.FirstName.Should().Be("Doe"); }
+                first => { first.FirstName.Should().Be("Doe"); },
+                second => { second.LastName.Should().Be("Doe"); }
             );
         }
 
@@ -93,7 +89,7 @@ namespace RefinedQuery.Tests
             var query = _fixture.Context.Persons;        
             var result = query.SearchBy(filter, searchTerm);
 
-            result.Should().HaveCount(4);
+            result.Should().HaveCount(8);
         }
 
         [Fact]
