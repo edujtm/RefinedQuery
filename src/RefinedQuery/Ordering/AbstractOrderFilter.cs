@@ -17,7 +17,7 @@ namespace RefinedQuery.Ordering
         {
             if (orderFields == null) 
             {
-                throw new ArgumentException("orderFields cannot be null.");
+                return values;
             }
             
             if (!OrderRules.Any() || !orderFields.Any())

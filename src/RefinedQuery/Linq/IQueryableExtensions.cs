@@ -8,6 +8,7 @@ using RefinedQuery.Searching;
 using RefinedQuery.Ordering;
 using RefinedQuery.Pagination;
 using RefinedQuery.QueryHandler;
+using RefinedQuery.Expressions;
 
 namespace RefinedQuery.Linq
 {
@@ -78,7 +79,7 @@ namespace RefinedQuery.Linq
         /// <param name="orderFilter">The order filter with ordering rules</param>
         /// <param name="orderFields">fields from the query string that define the ordering</param>
         /// <returns>Queryable ordered by applying the order fields to the rules in the filter</returns>
-        public static IQueryable<T> OrderBy<T, Q>(
+        public static IQueryable<T> OrderBy<T>(
             this IQueryable<T> queryable, 
             IOrderFilter<T> orderFilter, 
             IEnumerable<string> orderFields
@@ -113,5 +114,8 @@ namespace RefinedQuery.Linq
             => query.Expression.Type == typeof(IOrderedQueryable<T>)
                 ? ((IOrderedQueryable<T>)query).ThenByDescending(keySelector)
                 : query.OrderByDescending(keySelector);
+
+        internal static bool IsOrdered<T>(this IQueryable<T> queryable)
+            => OrderingMethodFinder.IsOrdered(queryable.Expression);
     }
 }
