@@ -3,8 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>RefinedQuery</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>Eduardo Macedo</Authors>
+    <Description>Helper library for applying query objects into IQueryables in a declarative manner</Description>
+
+    <RepositoryUrl>https://github.com/edujtm/RefinedQuery</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
